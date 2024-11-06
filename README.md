@@ -21,7 +21,11 @@ To run this project, you need to create an `application.properties` file in the 
 
    ```properties
     spring.application.name=travelbookingsystem
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 9cb5aac7524e8ed9a6e7ecfbc0cabb98a8073d66
     #view resolve
     spring.mvc.view.prefix=/WEB-INF/views/
     spring.mvc.view.suffix=.jsp
