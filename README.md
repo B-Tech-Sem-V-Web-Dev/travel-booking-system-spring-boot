@@ -15,7 +15,7 @@ To run this project, you need to create an `application.properties` file in the 
 
 ### Instructions:
 
-1. Navigate to `src/main/resources` (create `src/main/resources` if not available).
+1. Navigate to `src/main/resources` (create `src/main/resources` if not available already).
 2. Create a file named `application.properties`.
 3. Add the following content to the file:
 
