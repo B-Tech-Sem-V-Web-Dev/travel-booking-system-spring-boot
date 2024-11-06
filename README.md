@@ -21,7 +21,11 @@ To run this project, you need to create an `application.properties` file in the 
 
    ```properties
     spring.application.name=travelbookingsystem
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 9cb5aac7524e8ed9a6e7ecfbc0cabb98a8073d66
     #view resolve
     spring.mvc.view.prefix=/WEB-INF/views/
     spring.mvc.view.suffix=.jsp
@@ -58,3 +62,5 @@ Alternatively, you can run the application directly from an IDE like IntelliJ ID
 3. Right-click on the main class and select **Run** or **Debug** (the exact option may vary depending on your IDE).
 
 The application should start, and you can access it at `http://localhost:8080` by default (unless you have configured a different server port). Server port can be configured in `application.properties`.
+
+> This project is the part of Web Developement project for Semester V of B.Tech IT Department, University of Calcutta.
