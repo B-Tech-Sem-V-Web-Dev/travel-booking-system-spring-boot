@@ -20,11 +20,16 @@ To run this project, you need to create an `application.properties` file in the 
 3. Add the following content to the file:
 
    ```properties
-    spring.application.name=travelbookingsystem
+   spring.application.name=travelbookingsystem
 
-    #view resolve
-    spring.mvc.view.prefix=/WEB-INF/views/
-    spring.mvc.view.suffix=.jsp
+   #view resolve
+   spring.mvc.view.prefix=/WEB-INF/views/
+   spring.mvc.view.suffix=.jsp
+
+   #database config
+   spring.datasource.url=jdbc:mysql://localhost:3306/<your_db_name>
+   spring.datasource.username=<your_db_username>
+   spring.datasource.password=<your_db_password>
    ```
 
 You may need to add additional configuration properties depending on your setup (e.g., database credentials, server port, etc.).
