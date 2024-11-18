@@ -30,6 +30,12 @@ To run this project, you need to create an `application.properties` file in the 
    spring.datasource.url=jdbc:mysql://localhost:3306/<your_db_name>
    spring.datasource.username=<your_db_username>
    spring.datasource.password=<your_db_password>
+
+   #jpa config
+   spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+   spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.properties.hibernate.show_sql=true
+   spring.jpa.properties.hibernate.format_sql=true 
    ```
 
 You may need to add additional configuration properties depending on your setup (e.g., database credentials, server port, etc.).
