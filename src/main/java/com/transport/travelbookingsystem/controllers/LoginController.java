@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.transport.travelbookingsystem.handlers.EncryptionHandler;
 import com.transport.travelbookingsystem.handlers.SessionHandler;
 import com.transport.travelbookingsystem.services.UserServices;
 
@@ -33,8 +32,7 @@ public class LoginController {
         if (loggedUser != null)
             return "redirect:/";
 
-        String actualEncodedPassword = userServices.getPassword(username);
-        if (password != null && actualEncodedPassword!=null && EncryptionHandler.matchPassword(password, actualEncodedPassword)) {
+        if (userServices.verifyPassword(username, password)) {
             SessionHandler.setUsernameSession(session, username);
             return "redirect:/";
         }
