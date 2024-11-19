@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.transport.travelbookingsystem.handlers.EncryptionHandler;
 import com.transport.travelbookingsystem.handlers.SessionHandler;
 import com.transport.travelbookingsystem.services.UserServices;
 
@@ -19,22 +20,24 @@ public class LoginController {
 
     @GetMapping("/login")
     public String getLoginPage(HttpSession session) {
-        String loggedUser=SessionHandler.getUsernameSession(session);
-        if(loggedUser!=null) return "redirect:/";
+        String loggedUser = SessionHandler.getUsernameSession(session);
+        if (loggedUser != null)
+            return "redirect:/";
 
         return "login";
     }
 
     @PostMapping("/login")
     public String loginUser(String username, String password, HttpSession session) {
-        String loggedUser=SessionHandler.getUsernameSession(session);
-        if(loggedUser!=null) return "redirect:/";
+        String loggedUser = SessionHandler.getUsernameSession(session);
+        if (loggedUser != null)
+            return "redirect:/";
 
-        String actualPassword=userServices.getPassword(username);
-        if(password!=null && password.equals(actualPassword)){
+        String actualEncodedPassword = userServices.getPassword(username);
+        if (password != null && actualEncodedPassword!=null && EncryptionHandler.matchPassword(password, actualEncodedPassword)) {
             SessionHandler.setUsernameSession(session, username);
             return "redirect:/";
-        } 
+        }
 
         return "redirect:/login";
     }
