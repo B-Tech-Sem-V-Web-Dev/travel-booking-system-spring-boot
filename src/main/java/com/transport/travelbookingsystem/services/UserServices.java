@@ -18,8 +18,9 @@ public class UserServices {
         return userRepository.save(new Users(username, EncryptionHandler.encryptPassword(password)));
     }
 
-    public String getPassword(String username) {
-        return userRepository.getPasswordByUsername(username);
+    public Boolean verifyPassword(String username,String password) {
+        String actualEncodedPassword = userRepository.getPasswordByUsername(username);
+        return password != null && actualEncodedPassword!=null && EncryptionHandler.matchPassword(password, actualEncodedPassword);
     }
 
 }
