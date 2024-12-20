@@ -21,17 +21,25 @@ public class RegistrationController {
     @GetMapping("/register")
     public String getRegisterPage(HttpSession session) {
         String loggedUser = SessionHandler.getUsernameSession(session);
-        if (loggedUser != null) return "redirect:/";
+        if (loggedUser != null)
+            return "redirect:/";
 
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerUser(String username, String password, HttpSession session) {
-        String loggedUser=SessionHandler.getUsernameSession(session);
-        if(loggedUser!=null) return "redirect:/";
+    public String registerUser(String username, String password, String email, String phone_number, String citizenship,
+            String aadhar_number, Integer age, String gender, String address, HttpSession session) {
 
-        userServices.insertOneUser(username, password);
+        String loggedUser = SessionHandler.getUsernameSession(session);
+        if (loggedUser != null)
+            return "redirect:/";
+        if ("India".equals(citizenship) && (aadhar_number == null || aadhar_number.isEmpty())) {
+            return "redirect:/register?error=aadharRequired";
+        }
+
+        userServices.insertOneUser(username, password, email, phone_number, citizenship, aadhar_number, age, gender,
+                address);
 
         return "redirect:/login";
     }
