@@ -17,7 +17,7 @@ public class UserServices {
     }
 
     public Users insertOneUser(
-            String username, String password, String email, String phone_number, String citizenship,
+            String username, String password, String name, String email, String phone_number, String citizenship,
             String aadhar_number, Integer age, String gender, String address) {
 
         String encryptedPassword = EncryptionHandler.encryptPassword(password);
@@ -25,6 +25,7 @@ public class UserServices {
         Users user = new Users(
                 username,
                 encryptedPassword,
+                name,
                 email,
                 phone_number,
                 citizenship,

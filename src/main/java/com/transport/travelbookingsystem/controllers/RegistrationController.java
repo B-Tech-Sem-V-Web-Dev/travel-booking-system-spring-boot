@@ -28,7 +28,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String registerUser(String username, String password, String email, String phone_number, String citizenship,
+    public String registerUser(String username, String password, String name, String email, String phone_number, String citizenship,
             String aadhar_number, Integer age, String gender, String address, HttpSession session) {
 
         String loggedUser = SessionHandler.getUsernameSession(session);
@@ -38,7 +38,7 @@ public class RegistrationController {
             return "redirect:/register?error=aadharRequired";
         }
 
-        userServices.insertOneUser(username, password, email, phone_number, citizenship, aadhar_number, age, gender,
+        userServices.insertOneUser(username, password,name, email, phone_number, citizenship, aadhar_number, age, gender,
                 address);
 
         return "redirect:/login";

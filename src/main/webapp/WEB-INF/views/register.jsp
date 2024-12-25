@@ -34,6 +34,10 @@
                             <th><input type="password" id="password" name="password" placeholder="Password" required></th>
                         </tr>
                         <tr>
+                            <th><label for="name">Name:</label></th>
+                            <th><input type="text" id="name" name="name" placeholder="Name" required></th>
+                        </tr>
+                        <tr>
                             <th><label for="email">Email:</label></th>
                             <th><input type="email" id="email" name="email" placeholder="Email" required></th>
                         </tr>
