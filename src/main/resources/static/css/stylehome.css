@@ -1,0 +1,369 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+   
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    background:rgba(223, 255, 246, 0.833);
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(0, 146, 110, 0.696);
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+    box-sizing: border-box;
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+
+.navbar-links li {
+    display: inline;
+}
+
+.navbar-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar-links a:hover {
+    text-decoration: underline;
+}
+
+.navbar-account a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.navbar-account a:hover {
+    text-decoration: underline;
+}
+
+.hotels, .destinations, .about, .faq-section{
+    padding: 40px;
+    background-color: #f9f9f9;
+    margin: 70px ;
+    -webkit-border-radius: 22px 22px 22px 22px;
+    -moz-border-radius: 22px 22px 22px 22px;
+    border-radius: 22px 22px 22px 22px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+.contact{
+    background-color: #333;
+    color: white;
+}
+
+.homebanner {
+    height: 500px;
+    width: 100%;
+    
+}
+
+.homeimage {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    /* position: relative; */
+}
+
+.hometxt {
+    position: relative;
+    z-index: 2;
+    font-size: 42px;
+    color: #fff;
+    top: 50%;
+}
+
+.homeimage img {
+    object-fit: cover;
+    max-height: 600px;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.homeimage img {
+
+    height: 100%;
+    width: 100%;
+    object-fit: fit;
+    /* -webkit-border-radius: 22px 22px 22px 22px;
+    -moz-border-radius: 22px 22px 22px 22px;
+    border-radius: 22px 22px 22px 22px; */
+}
+
+/* Image Gallery */
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 80%;
+    overflow: hidden;
+    /* Ensures content outside visible area is hidden */
+    left:10%;
+}
+
+.hotelinfo {
+    height: 300px;
+    width: 400px;
+    margin-top: 15px;
+    -webkit-border-radius: 22px 22px 22px 22px;
+    -moz-border-radius: 22px 22px 22px 22px;
+    border-radius: 22px 22px 22px 22px;
+
+}
+
+.hotelinfo h2 {
+    position: relative;
+    z-index: 2;
+    top: 35%;
+    color: white;
+}
+
+.hotelinfo img {
+    position: relative;
+    width: 400px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: fit;
+}
+
+/*hotel images */
+#hotel1 {
+    background: url('/images/hotel1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#hotel2 {
+    background: url('/images/hotel2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#hotel3 {
+    background: url('/images/hotel3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#hotel4{
+    background: url('/images/hotel4.avif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* destination images*/
+#destination1 {
+    background: url('/images/maldives.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#destination2{
+    background: url('/images/ladakh.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#destination3{
+    background: url('/images/sikkim.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#destination4{
+    background: url('/images/egypt.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* scroll */
+.scroll-container {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+}
+
+/* Hide scrollbar */
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scroll-container div {
+    min-width: 400px;
+    height: 300px;
+    margin-right: 10px;
+    background: #007bff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+/* Button Styling */
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    background:rgba(207, 48, 0, 0.751);;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+button:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.scroll-left {
+    left: 0;
+}
+
+.scroll-right {
+    right: 0;
+}
+
+
+/* FAQ Section */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 15px;
+}
+
+/* Contact Section */
+#contact p {
+    text-align: center;
+    margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .image-gallery img {
+        width: 90%;
+    }
+}
+
+/* faq */
+.faq-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: rgba(183, 43, 0, 0.927);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 10px;
+}
+
+.faq-answer p {
+    margin: 10px 0;
+}
+
+.faq-answer.open {
+    max-height: 150px; /* Adjust based on content size */
+    padding: 10px;
+}
+

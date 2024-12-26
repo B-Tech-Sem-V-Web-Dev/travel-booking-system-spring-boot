@@ -26,7 +26,7 @@ public class TravelPlanController {
         if (loggedUser == null) return "redirect:/login";  
 
         model.addAttribute("loggedUser", loggedUser);
-        return "createTravelPlan";  // This is the form page where users can fill in travel details
+        return "bookingform";  // This is the form page where users can fill in travel details
     }
 
     
