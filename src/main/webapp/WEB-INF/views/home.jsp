@@ -4,7 +4,7 @@
 <head>
     <title>TravelMate</title>
     <link rel="stylesheet" href="/css/stylehome.css">
-    <script src="/javaScript/home.js"></script>
+    <script src="/js/home.js"></script>
 </head>
 <body>
     <div class="container">
