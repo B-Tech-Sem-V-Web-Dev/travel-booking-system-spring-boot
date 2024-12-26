@@ -3,7 +3,6 @@ package com.transport.travelbookingsystem.models;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-import com.transport.travelbookingsystem.models.TravelPlans.MediumOfTravel;
 import java.util.Objects;
 
 @Entity
@@ -41,6 +40,10 @@ public class TransportSchedules {
 
     @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt = LocalDateTime.now();
+
+    public enum MediumOfTravel {
+        BUS, TRAIN, FLIGHT
+    }
 
     public TransportSchedules() {
     }

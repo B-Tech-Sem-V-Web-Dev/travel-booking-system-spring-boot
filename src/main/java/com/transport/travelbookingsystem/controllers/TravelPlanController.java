@@ -1,6 +1,8 @@
 package com.transport.travelbookingsystem.controllers;
 
+import com.transport.travelbookingsystem.models.TransportSchedules;
 import com.transport.travelbookingsystem.models.TravelPlans;
+import com.transport.travelbookingsystem.services.TransportScheduleService;
 import com.transport.travelbookingsystem.services.TravelPlanService;
 import com.transport.travelbookingsystem.handlers.SessionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class TravelPlanController {
 
     @Autowired
     private TravelPlanService travelPlanService;
+    @Autowired
+    private TransportScheduleService transportScheduleService;
 
 
     @GetMapping("/create")
@@ -26,22 +30,25 @@ public class TravelPlanController {
         if (loggedUser == null) return "redirect:/login";  
 
         model.addAttribute("loggedUser", loggedUser);
+        System.out.println(transportScheduleService.getAll());
+        model.addAttribute("mediumOfTravels", transportScheduleService.getAll());
         return "bookingform";  // This is the form page where users can fill in travel details
     }
 
     
     @PostMapping("/create")
-    public String createTravelPlan(@ModelAttribute TravelPlans travelPlan, HttpSession session, Model model) {
+    public String createTravelPlan(String username,String destination,Long mediumOfTravelId,Long hotelId, HttpSession session, Model model) {
         String loggedUser = SessionHandler.getUsernameSession(session);
         if (loggedUser == null) return "redirect:/login";  
 
-        
+        TravelPlans travelPlan=new TravelPlans(username,destination,mediumOfTravelId,hotelId);
         travelPlan.setUsername(loggedUser);
         TravelPlans createdTravelPlan = travelPlanService.saveTravelPlan(travelPlan);
 
         
         model.addAttribute("travelPlan", createdTravelPlan);
-        return "viewTravelPlan";  
+        Long travelPlanId=createdTravelPlan.getId();
+        return "redirect:/travel/plans/"+travelPlanId;  
     }
 
     @GetMapping("/plans")
@@ -50,7 +57,8 @@ public class TravelPlanController {
         if (loggedUser == null) return "redirect:/login";  
        
         List<TravelPlans> travelPlans = travelPlanService.findByUser(loggedUser);
-        model.addAttribute("travelPlans", travelPlans);
+        model.addAttribute("currentPlan",travelPlans.isEmpty()?null:travelPlans.removeLast());
+        model.addAttribute("previousPlans", travelPlans);
         return "viewTravelPlans";  
     }
 
@@ -65,6 +73,8 @@ public class TravelPlanController {
         if (optionalTravelPlan.isPresent()) {
             
             TravelPlans travelPlan = optionalTravelPlan.get();
+            Optional<TransportSchedules> optionalTransportSchedule=transportScheduleService.findById(travelPlan.getMediumOfTravelId());
+            model.addAttribute("mediumOfTravel",optionalTransportSchedule.get());
             model.addAttribute("travelPlan", travelPlan);
             return "viewTravelPlan";  
         } else {
