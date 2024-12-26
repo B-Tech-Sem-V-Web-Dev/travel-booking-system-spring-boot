@@ -22,7 +22,7 @@
             </ul>
             <div class="navbar-account">
                 <form action="/logout" method="post">
-                    <button type="submit">Logout</button>
+                    <button type="submit" class="logout">Logout</button>
                 </form>
 
             </div>
