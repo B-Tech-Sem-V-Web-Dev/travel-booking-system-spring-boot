@@ -1,6 +1,7 @@
 package com.transport.travelbookingsystem.services;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,18 @@ public class UserServices {
         String actualEncodedPassword = userRepository.getPasswordByUsername(username);
         return password != null && actualEncodedPassword != null
                 && EncryptionHandler.matchPassword(password, actualEncodedPassword);
+    }
+
+    public Optional<Users> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public Optional<Users> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public void deleteUser(String username) {
+        userRepository.deleteById(username);
     }
 
 }
