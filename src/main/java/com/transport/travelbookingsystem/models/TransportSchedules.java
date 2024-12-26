@@ -1,7 +1,6 @@
 package com.transport.travelbookingsystem.models;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.transport.travelbookingsystem.models.TravelPlans.MediumOfTravel;
@@ -31,22 +30,22 @@ public class TransportSchedules {
     @Column(name = "arrival_time", nullable = false)
     private LocalDateTime arrivalTime;
 
-    @Column(name = "price", nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;
+    @Column(name = "price", nullable = false, precision = 10)
+    private Double price;
 
     @Column(name = "booking_link", nullable = false, length = 255)
     private String bookingLink;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
     public TransportSchedules() {
     }
 
-    public TransportSchedules(Long id, MediumOfTravel medium, String source, String destination, LocalDateTime departureTime, LocalDateTime arrivalTime, BigDecimal price, String bookingLink, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public TransportSchedules(Long id, MediumOfTravel medium, String source, String destination, LocalDateTime departureTime, LocalDateTime arrivalTime, Double price, String bookingLink, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.medium = medium;
         this.source = source;
@@ -107,11 +106,11 @@ public class TransportSchedules {
         this.arrivalTime = arrivalTime;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return this.price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

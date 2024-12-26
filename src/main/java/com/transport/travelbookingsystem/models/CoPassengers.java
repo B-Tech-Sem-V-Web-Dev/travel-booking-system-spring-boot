@@ -11,9 +11,8 @@ public class CoPassengers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "travel_plan_id", nullable = false)
-    private TravelPlans travelPlan;
+    @Column(name = "travel_plan_id", nullable = false)
+    private Long travelPlanId; // Store the travel plan ID instead of a foreign key reference
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -30,9 +29,9 @@ public class CoPassengers {
     public CoPassengers() {
     }
 
-    public CoPassengers(Long id, TravelPlans travelPlan, String name, Boolean isRegisteredUser, String email, String phoneNumber) {
+    public CoPassengers(Long id, Long travelPlanId, String name, Boolean isRegisteredUser, String email, String phoneNumber) {
         this.id = id;
-        this.travelPlan = travelPlan;
+        this.travelPlanId = travelPlanId;
         this.name = name;
         this.isRegisteredUser = isRegisteredUser;
         this.email = email;
@@ -47,12 +46,12 @@ public class CoPassengers {
         this.id = id;
     }
 
-    public TravelPlans getTravelPlan() {
-        return this.travelPlan;
+    public Long getTravelPlanId() {
+        return this.travelPlanId;
     }
 
-    public void setTravelPlan(TravelPlans travelPlan) {
-        this.travelPlan = travelPlan;
+    public void setTravelPlanId(Long travelPlanId) {
+        this.travelPlanId = travelPlanId;
     }
 
     public String getName() {
@@ -99,19 +98,18 @@ public class CoPassengers {
             return false;
         }
         CoPassengers coPassengers = (CoPassengers) o;
-        return Objects.equals(id, coPassengers.id) && Objects.equals(travelPlan, coPassengers.travelPlan) && Objects.equals(name, coPassengers.name) && Objects.equals(isRegisteredUser, coPassengers.isRegisteredUser) && Objects.equals(email, coPassengers.email) && Objects.equals(phoneNumber, coPassengers.phoneNumber);
+        return Objects.equals(id, coPassengers.id) && Objects.equals(travelPlanId, coPassengers.travelPlanId) && Objects.equals(name, coPassengers.name) && Objects.equals(isRegisteredUser, coPassengers.isRegisteredUser) && Objects.equals(email, coPassengers.email) && Objects.equals(phoneNumber, coPassengers.phoneNumber);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", travelPlan='" + getTravelPlan() + "'" +
+            ", travelPlanId='" + getTravelPlanId() + "'" +
             ", name='" + getName() + "'" +
             ", isRegisteredUser='" + isIsRegisteredUser() + "'" +
             ", email='" + getEmail() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             "}";
     }
-    
 }

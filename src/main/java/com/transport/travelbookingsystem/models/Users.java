@@ -5,8 +5,6 @@ import java.util.Objects;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +17,9 @@ public class Users {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -36,30 +37,18 @@ public class Users {
     private String gender;
 
     private String address;
+    @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
-
-
+    @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private LocalDateTime updatedAt = LocalDateTime.now();
     public Users() {
     }
 
-    public Users(String username, String password, String email, String phoneNumber, String citizenship, String aadharNumber, Integer age, String gender, String address, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Users(String username, String password, String name, String email, String phoneNumber, String citizenship, String aadharNumber, Integer age, String gender, String address, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.username = username;
         this.password = password;
+        this.name=name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.citizenship = citizenship;
@@ -90,6 +79,14 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -185,6 +182,7 @@ public class Users {
         return "{" +
             " username='" + getUsername() + "'" +
             ", password='" + getPassword() + "'" +
+            ", name='" + getName() + "'" +
             ", email='" + getEmail() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", citizenship='" + getCitizenship() + "'" +
