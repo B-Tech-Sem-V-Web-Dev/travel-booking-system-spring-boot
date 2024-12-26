@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<%@page import="com.transport.travelbookingsystem.models.TransportSchedules"%>
+<%@page import="java.util.List"%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,13 +17,14 @@
                 <li><a href="/user/profile">Dashboard</a></li>
                 <li><a href="#packages">Booking Packages</a></li>
                 <li><a href="#gallery">TravelMate Gallery</a></li>
-                <li><a href="/html/booking.html">Your Plans</a></li>
-                <li><a href="/html/bookingform.html">Booking form</a></li>
+                <li><a href="/travel/plans">Your Plans</a></li>
+                <li><a href="/travel/create">Booking form</a></li>
             </ul>
             <div class="navbar-account">
                 <form action="/logout" method="post">
-                    <button type="submit" class="logout">Logout</button>
+                    <button type="submit">Logout</button>
                 </form>
+
             </div>
         </div>
         <div class="bookingform">
@@ -43,16 +45,31 @@
                         <tr>
                             <th>Enter medium of travel: </th>
                             <th>
-                                <select id="medium_of_travel" name="medium_of_travel" required>
-                                    <option value="" disabled selected>select</option>
-                                    <option value="bus">Bus</option>
-                                    <option value="train">Train</option>
-                                    <option value="plane">Plane</option>
+                                <select id="medium_of_travel" name="mediumOfTravelId" required>
+                                    <option value="" disabled selected>Select</option>
+                                    <% 
+                                        List<TransportSchedules> mediumOfTravels = (List<TransportSchedules>)
+                                                request.getAttribute("mediumOfTravels");
+                                                if (mediumOfTravels != null && !mediumOfTravels.isEmpty()) {
+                                                for (TransportSchedules medium : mediumOfTravels) {
+                                                %>
+                                                <option value="<%= medium.getId() %>">
+                                                    <%= medium.getSource() %> | <%= medium.getDestination() %> |
+                                                            <%= medium.getDepartureTime() %> | <%=
+                                                                    medium.getArrivalTime() %> |
+                                                                    <%= medium.getPrice() %>
+                                                </option>
+                                                <% } // End of for loop 
+                                                } else { %>
+                                                    <option value="" disabled>No travel options available</option>
+                                                 <% } %>
+                                </select>
                             </th>
+
                         </tr>
                         <tr>
                             <th>Enter Hotel Id: </th>
-                            <th><input type="txt" name="hotelid" required></th>
+                            <th><input type="number" name="hotelId" required></th>
                         </tr>
                     </table>
                     <button type="submit">Submit</button>

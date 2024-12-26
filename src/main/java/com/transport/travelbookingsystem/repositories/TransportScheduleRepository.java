@@ -1,6 +1,7 @@
 package com.transport.travelbookingsystem.repositories; 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.transport.travelbookingsystem.models.TransportSchedules;
@@ -12,4 +13,7 @@ public interface TransportScheduleRepository extends JpaRepository<TransportSche
     List<TransportSchedules> findByDestination(String destination);
     List<TransportSchedules> findBySourceAndDestination(String source, String destination);
     List<TransportSchedules> findByMedium(String medium);
+
+    @Query(value = "SELECT * FROM transport_schedules",nativeQuery = true)
+    List<TransportSchedules> getAll();
 }

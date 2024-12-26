@@ -18,17 +18,17 @@
         <div class="usernavbar">
             <div class="navbar-brand">TravelMate</div>
             <ul class="navbar-links">
-                <li><a href="User.html">Dashboard</a></li>
+                <li><a href="/user/profile">Dashboard</a></li>
                 <li><a href="#packages">Booking Packages</a></li>
                 <li><a href="#gallery">TravelMate Gallery</a></li>
-                <li><a href="booking">Yourr Plans</a></li>
+                 <li><a href="/travel/plans">Your Plans</a></li>
                 <li><a href="/travel/create">Booking form</a></li>
             </ul>
             <div class="navbar-account">
                 <form action="/logout" method="post">
                     <button type="submit">Logout</button>
                 </form>
-                <!-- <a href="#logout">Logout</a> -->
+                
             </div>
         </div>
         <div class="userinfo">

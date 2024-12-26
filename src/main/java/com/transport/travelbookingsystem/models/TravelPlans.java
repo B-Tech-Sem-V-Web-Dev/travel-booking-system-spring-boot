@@ -3,7 +3,6 @@ package com.transport.travelbookingsystem.models;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
 @Entity
 @Table(name = "TravelPlans")
 public class TravelPlans {
@@ -18,9 +17,8 @@ public class TravelPlans {
     @Column(name = "destination", length = 100)
     private String destination;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "medium_of_travel")
-    private MediumOfTravel mediumOfTravel;
+    private Long mediumOfTravelId;
 
     // Replaced the foreign key relationship with a simple hotel_id field
     @Column(name = "hotel_id", nullable = true)
@@ -32,21 +30,14 @@ public class TravelPlans {
     @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    public enum MediumOfTravel {
-        BUS, TRAIN, FLIGHT
-    }
-
     public TravelPlans() {
     }
 
-    public TravelPlans(Long id, String username, String destination, MediumOfTravel mediumOfTravel, Long hotelId, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.id = id;
+    public TravelPlans(String username, String destination, Long mediumOfTravelId, Long hotelId) {
         this.username = username;
         this.destination = destination;
-        this.mediumOfTravel = mediumOfTravel;
+        this.mediumOfTravelId = mediumOfTravelId;
         this.hotelId = hotelId;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public Long getId() {
@@ -73,12 +64,12 @@ public class TravelPlans {
         this.destination = destination;
     }
 
-    public MediumOfTravel getMediumOfTravel() {
-        return this.mediumOfTravel;
+    public Long getMediumOfTravelId() {
+        return this.mediumOfTravelId;
     }
 
-    public void setMediumOfTravel(MediumOfTravel mediumOfTravel) {
-        this.mediumOfTravel = mediumOfTravel;
+    public void setMediumOfTravelId(Long mediumOfTravelId) {
+        this.mediumOfTravelId = mediumOfTravelId;
     }
 
     public Long getHotelId() {
@@ -113,7 +104,7 @@ public class TravelPlans {
             return false;
         }
         TravelPlans travelPlans = (TravelPlans) o;
-        return Objects.equals(id, travelPlans.id) && Objects.equals(username, travelPlans.username) && Objects.equals(destination, travelPlans.destination) && Objects.equals(mediumOfTravel, travelPlans.mediumOfTravel) && Objects.equals(hotelId, travelPlans.hotelId) && Objects.equals(createdAt, travelPlans.createdAt) && Objects.equals(updatedAt, travelPlans.updatedAt);
+        return Objects.equals(id, travelPlans.id) && Objects.equals(username, travelPlans.username) && Objects.equals(destination, travelPlans.destination) && Objects.equals(mediumOfTravelId, travelPlans.mediumOfTravelId) && Objects.equals(hotelId, travelPlans.hotelId) && Objects.equals(createdAt, travelPlans.createdAt) && Objects.equals(updatedAt, travelPlans.updatedAt);
     }
 
     @Override
@@ -122,7 +113,7 @@ public class TravelPlans {
             " id='" + getId() + "'" +
             ", username='" + getUsername() + "'" +
             ", destination='" + getDestination() + "'" +
-            ", mediumOfTravel='" + getMediumOfTravel() + "'" +
+            ", mediumOfTravel='" + getMediumOfTravelId() + "'" +
             ", hotelId='" + getHotelId() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
             ", updatedAt='" + getUpdatedAt() + "'" +

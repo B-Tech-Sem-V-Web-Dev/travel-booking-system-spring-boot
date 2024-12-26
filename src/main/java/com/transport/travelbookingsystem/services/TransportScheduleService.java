@@ -7,12 +7,18 @@ import com.transport.travelbookingsystem.models.TransportSchedules;
 import com.transport.travelbookingsystem.repositories.TransportScheduleRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransportScheduleService {
 
     @Autowired
     private TransportScheduleRepository transportScheduleRepository;
+
+
+    public Optional<TransportSchedules> findById(Long id) {
+        return transportScheduleRepository.findById(id);
+    }
 
     public List<TransportSchedules> findByDestination(String destination) {
         return transportScheduleRepository.findByDestination(destination);
@@ -32,5 +38,9 @@ public class TransportScheduleService {
 
     public void deleteTransportSchedule(Long id) {
         transportScheduleRepository.deleteById(id);
+    }
+
+    public List<TransportSchedules> getAll(){
+        return transportScheduleRepository.getAll();
     }
 }
