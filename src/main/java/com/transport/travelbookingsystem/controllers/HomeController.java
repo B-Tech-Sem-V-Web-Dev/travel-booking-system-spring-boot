@@ -13,7 +13,7 @@ public class HomeController {
     @GetMapping("/")
     public String getHomePage(HttpSession session) {
         String loggedUser=SessionHandler.getUsernameSession(session);
-        if(loggedUser==null) return "redirect:/login";
+        if(loggedUser!=null) return "redirect:/user/profile";
         
         return "home";
     }
