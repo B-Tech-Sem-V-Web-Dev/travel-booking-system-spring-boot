@@ -9,6 +9,7 @@ import com.transport.travelbookingsystem.models.HotelBookings;
 
 @Repository
 public interface HotelBookingRepository extends JpaRepository<HotelBookings, Long> {
+    List<HotelBookings> findByUsername(String username);
     List<HotelBookings> findByHotelId(Long hotelId);
     List<HotelBookings> findByTravelPlanId(Long travelPlanId);
 }

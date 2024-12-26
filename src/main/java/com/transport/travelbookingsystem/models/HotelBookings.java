@@ -1,7 +1,6 @@
 package com.transport.travelbookingsystem.models;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -16,6 +15,10 @@ public class HotelBookings {
 
     @Column(name = "hotel_id", nullable = false)
     private Long hotelId;
+    
+    // Replaced user_id with username
+    @Column(name = "username", nullable = false, length = 100)
+    private String username;
 
     @Column(name = "travel_plan_id", nullable = false)
     private Long travelPlanId;
@@ -29,8 +32,8 @@ public class HotelBookings {
     @Column(name = "rooms_booked", nullable = false)
     private int roomsBooked;
 
-    @Column(name = "total_price", nullable = false, precision = 10, scale = 2)
-    private BigDecimal totalPrice;
+    @Column(name = "total_price", nullable = false, precision = 10)
+    private Double totalPrice;
 
     @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -41,9 +44,10 @@ public class HotelBookings {
     public HotelBookings() {
     }
 
-    public HotelBookings(Long id, Long hotelId, Long travelPlanId, LocalDate checkInDate, LocalDate checkOutDate, int roomsBooked, BigDecimal totalPrice, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public HotelBookings(Long id, Long hotelId, String username, Long travelPlanId, LocalDate checkInDate, LocalDate checkOutDate, int roomsBooked, Double totalPrice, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.hotelId = hotelId;
+        this.username = username;
         this.travelPlanId = travelPlanId;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
@@ -67,6 +71,14 @@ public class HotelBookings {
 
     public void setHotelId(Long hotelId) {
         this.hotelId = hotelId;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getTravelPlanId() {
@@ -101,11 +113,11 @@ public class HotelBookings {
         this.roomsBooked = roomsBooked;
     }
 
-    public BigDecimal getTotalPrice() {
+    public Double getTotalPrice() {
         return this.totalPrice;
     }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -133,7 +145,7 @@ public class HotelBookings {
             return false;
         }
         HotelBookings hotelBookings = (HotelBookings) o;
-        return Objects.equals(id, hotelBookings.id) && Objects.equals(hotelId, hotelBookings.hotelId) && Objects.equals(travelPlanId, hotelBookings.travelPlanId) && Objects.equals(checkInDate, hotelBookings.checkInDate) && Objects.equals(checkOutDate, hotelBookings.checkOutDate) && roomsBooked == hotelBookings.roomsBooked && Objects.equals(totalPrice, hotelBookings.totalPrice) && Objects.equals(createdAt, hotelBookings.createdAt) && Objects.equals(updatedAt, hotelBookings.updatedAt);
+        return Objects.equals(id, hotelBookings.id) && Objects.equals(hotelId, hotelBookings.hotelId) && Objects.equals(username, hotelBookings.username) && Objects.equals(travelPlanId, hotelBookings.travelPlanId) && Objects.equals(checkInDate, hotelBookings.checkInDate) && Objects.equals(checkOutDate, hotelBookings.checkOutDate) && roomsBooked == hotelBookings.roomsBooked && Objects.equals(totalPrice, hotelBookings.totalPrice) && Objects.equals(createdAt, hotelBookings.createdAt) && Objects.equals(updatedAt, hotelBookings.updatedAt);
     }
 
     @Override
@@ -141,6 +153,7 @@ public class HotelBookings {
         return "{" +
             " id='" + getId() + "'" +
             ", hotelId='" + getHotelId() + "'" +
+            ", username='" + getUsername() + "'" +
             ", travelPlanId='" + getTravelPlanId() + "'" +
             ", checkInDate='" + getCheckInDate() + "'" +
             ", checkOutDate='" + getCheckOutDate() + "'" +
@@ -152,4 +165,3 @@ public class HotelBookings {
     }
 
 }
-

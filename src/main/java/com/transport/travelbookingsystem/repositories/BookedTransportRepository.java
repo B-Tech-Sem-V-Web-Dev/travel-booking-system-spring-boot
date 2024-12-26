@@ -9,6 +9,6 @@ import com.transport.travelbookingsystem.models.BookedTransport;
 
 @Repository
 public interface BookedTransportRepository extends JpaRepository<BookedTransport, Long> {
-    List<BookedTransport> findByUserId(Long userId);
+    List<BookedTransport> findByUsername(String username);
     List<BookedTransport> findByTravelPlanId(Long travelPlanId);
 }

@@ -12,8 +12,8 @@ public class BookedTransport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @Column(name = "username", nullable = false)
+    private String username;
 
     @Column(name = "travel_plan_id", nullable = false)
     private Long travelPlanId;
@@ -40,9 +40,9 @@ public class BookedTransport {
     public BookedTransport() {
     }
 
-    public BookedTransport(Long id, Long userId, Long travelPlanId, Long transportScheduleId, String bookingReference, Status status, LocalDateTime bookedAt) {
+    public BookedTransport(Long id, String username, Long travelPlanId, Long transportScheduleId, String bookingReference, Status status, LocalDateTime bookedAt) {
         this.id = id;
-        this.userId = userId;
+        this.username = username;
         this.travelPlanId = travelPlanId;
         this.transportScheduleId = transportScheduleId;
         this.bookingReference = bookingReference;
@@ -58,12 +58,12 @@ public class BookedTransport {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return this.userId;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getTravelPlanId() {
@@ -114,14 +114,14 @@ public class BookedTransport {
             return false;
         }
         BookedTransport bookedTransport = (BookedTransport) o;
-        return Objects.equals(id, bookedTransport.id) && Objects.equals(userId, bookedTransport.userId) && Objects.equals(travelPlanId, bookedTransport.travelPlanId) && Objects.equals(transportScheduleId, bookedTransport.transportScheduleId) && Objects.equals(bookingReference, bookedTransport.bookingReference) && Objects.equals(status, bookedTransport.status) && Objects.equals(bookedAt, bookedTransport.bookedAt);
+        return Objects.equals(id, bookedTransport.id) && Objects.equals(username, bookedTransport.username) && Objects.equals(travelPlanId, bookedTransport.travelPlanId) && Objects.equals(transportScheduleId, bookedTransport.transportScheduleId) && Objects.equals(bookingReference, bookedTransport.bookingReference) && Objects.equals(status, bookedTransport.status) && Objects.equals(bookedAt, bookedTransport.bookedAt);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", userId='" + getUserId() + "'" +
+            ", username='" + getUsername() + "'" +
             ", travelPlanId='" + getTravelPlanId() + "'" +
             ", transportScheduleId='" + getTransportScheduleId() + "'" +
             ", bookingReference='" + getBookingReference() + "'" +
@@ -131,4 +131,3 @@ public class BookedTransport {
     }
 
 }
-

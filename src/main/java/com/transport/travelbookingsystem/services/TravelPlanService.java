@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.transport.travelbookingsystem.models.TravelPlans;
-import com.transport.travelbookingsystem.models.Users;
 import com.transport.travelbookingsystem.repositories.TravelPlanRepository;
 
 import java.util.List;
@@ -20,8 +19,8 @@ public class TravelPlanService {
         return travelPlanRepository.findById(id);
     }
 
-    public List<TravelPlans> findByUser(Users user) {
-        return travelPlanRepository.findByUser(user);
+    public List<TravelPlans> findByUser(String username) {
+        return travelPlanRepository.findByUsername(username);
     }
 
     public TravelPlans saveTravelPlan(TravelPlans travelPlan) {

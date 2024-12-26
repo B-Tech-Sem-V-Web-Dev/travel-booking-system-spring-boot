@@ -18,7 +18,11 @@ public class CoPassengerService {
         return coPassengerRepository.findByTravelPlanId(travelPlanId);
     }
 
-    public CoPassengers saveCoPassenger(CoPassengers coPassenger) {
+    public CoPassengers saveCoPassenger(String loggedUser, Long travelPlanId, String coPassengerName, Boolean isRegistered) {
+        CoPassengers coPassenger = new CoPassengers();
+        coPassenger.setTravelPlanId(travelPlanId);
+        coPassenger.setName(coPassengerName);
+        coPassenger.setIsRegisteredUser(isRegistered);
         return coPassengerRepository.save(coPassenger);
     }
 

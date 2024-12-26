@@ -12,20 +12,19 @@ public class TravelPlans {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private Users user;
+    @Column(name = "username", nullable = false, length = 100)
+    private String username;
 
-    @Column(name = "destination", nullable = false, length = 100)
+    @Column(name = "destination", length = 100)
     private String destination;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "medium_of_travel", nullable = false)
+    @Column(name = "medium_of_travel")
     private MediumOfTravel mediumOfTravel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hotel_id")
-    private Hotels hotel;
+    // Replaced the foreign key relationship with a simple hotel_id field
+    @Column(name = "hotel_id", nullable = true)
+    private Long hotelId;
 
     @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -40,12 +39,12 @@ public class TravelPlans {
     public TravelPlans() {
     }
 
-    public TravelPlans(Long id, Users user, String destination, MediumOfTravel mediumOfTravel, Hotels hotel, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public TravelPlans(Long id, String username, String destination, MediumOfTravel mediumOfTravel, Long hotelId, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
-        this.user = user;
+        this.username = username;
         this.destination = destination;
         this.mediumOfTravel = mediumOfTravel;
-        this.hotel = hotel;
+        this.hotelId = hotelId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -58,12 +57,12 @@ public class TravelPlans {
         this.id = id;
     }
 
-    public Users getUser() {
-        return this.user;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getDestination() {
@@ -82,12 +81,12 @@ public class TravelPlans {
         this.mediumOfTravel = mediumOfTravel;
     }
 
-    public Hotels getHotel() {
-        return this.hotel;
+    public Long getHotelId() {
+        return this.hotelId;
     }
 
-    public void setHotel(Hotels hotel) {
-        this.hotel = hotel;
+    public void setHotelId(Long hotelId) {
+        this.hotelId = hotelId;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -114,20 +113,19 @@ public class TravelPlans {
             return false;
         }
         TravelPlans travelPlans = (TravelPlans) o;
-        return Objects.equals(id, travelPlans.id) && Objects.equals(user, travelPlans.user) && Objects.equals(destination, travelPlans.destination) && Objects.equals(mediumOfTravel, travelPlans.mediumOfTravel) && Objects.equals(hotel, travelPlans.hotel) && Objects.equals(createdAt, travelPlans.createdAt) && Objects.equals(updatedAt, travelPlans.updatedAt);
+        return Objects.equals(id, travelPlans.id) && Objects.equals(username, travelPlans.username) && Objects.equals(destination, travelPlans.destination) && Objects.equals(mediumOfTravel, travelPlans.mediumOfTravel) && Objects.equals(hotelId, travelPlans.hotelId) && Objects.equals(createdAt, travelPlans.createdAt) && Objects.equals(updatedAt, travelPlans.updatedAt);
     }
-    
+
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", user='" + getUser() + "'" +
+            ", username='" + getUsername() + "'" +
             ", destination='" + getDestination() + "'" +
             ", mediumOfTravel='" + getMediumOfTravel() + "'" +
-            ", hotel='" + getHotel() + "'" +
+            ", hotelId='" + getHotelId() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
             ", updatedAt='" + getUpdatedAt() + "'" +
             "}";
     }
-
 }
